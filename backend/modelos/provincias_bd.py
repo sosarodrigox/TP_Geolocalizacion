@@ -1,9 +1,10 @@
 from sqlalchemy.orm import relationship  # Sirve para traer objetos
 from sqlalchemy import Column, ForeignKey, Integer, String
 from database import BaseBd
+from modelos.paises_bd import PaisBd
 
 
-class Provincias(BaseBd):
+class ProvinciaBd(BaseBd):
     __tablename__ = 'provincias'
 
     id = Column(Integer, primary_key=True)

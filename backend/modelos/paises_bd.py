@@ -9,11 +9,3 @@ class PaisBd(BaseBd):  # Definimos los atributos de la tabla (columnas) y nombre
 
     id = Column(Integer, primary_key=True)
     nombre = Column(String(80), nullable=False)
-
-
-class ProvinciasBd(BaseBd):
-    __tablename__ = 'provincias'
-
-    id = Column(Integer, primary_key=True)
-    nombre = Column(String(80), nullable=False)
-    pais_id = Column(Integer, ForeignKey('paises.id'))

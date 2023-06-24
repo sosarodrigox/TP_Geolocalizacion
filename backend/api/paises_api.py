@@ -5,7 +5,7 @@ from modelos.paises_api import PaisApi, PaisSinId
 from repos.paises_repositorio import PaisesRepositorio  # Importamos el repositorio
 
 # En una instancia de APIRouter, con el prefijo /paises indico que todos los endpoint de este archivo van a empezar con /paises y se lo asigno a la isntancia.
-paises_api = APIRouter(prefix='/paises')
+paises_api = APIRouter(prefix='/paises', tags=['Paises'])
 paises_repo = PaisesRepositorio()  # Creamos una instancia del repositorio
 
 
@@ -14,6 +14,10 @@ paises_repo = PaisesRepositorio()  # Creamos una instancia del repositorio
 @paises_api.get('', response_model=list[PaisApi])
 # Depends(): Crea la instancia usando la función get_db y cuando termina termina llama al db.close()
 def get_all(db: Session = Depends(get_db)):
+    # tags sirve para hacer comentarios en los enpoint y las funciones:
+    '''
+    Este es un comentario de la funcion (Devuelve una lista de todos los paises)
+    '''
     result = paises_repo.get_all(db)
     return result
 
@@ -55,4 +59,4 @@ def borrar(id: int, db: Session = Depends(get_db)):
     result = paises_repo.borrar(db, id)
     if result is None:
         raise HTTPException(status_code=404, detail='Pais no encontrado')
-    return #No devuelve nada.
+    return  # No devuelve nada.
